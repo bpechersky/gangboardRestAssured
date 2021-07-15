@@ -42,11 +42,20 @@ public class TestRegressinGet {
     @Test
     public void testingBookingGetBookingByName() {
         RestAssured.given()
-                .queryParam("firstname", "Sally")
-                .queryParam("lastname", "Brown")
+                .queryParams("firstname", "Sally","lastname","Brown")
                 .when()
                 .get("https://restful-booker.herokuapp.com/booking")
                 .prettyPrint();
     }
 
+    @Test
+    public void testPathParamGetBookingById() {
+        RestAssured.given()
+                .baseUri("https://restful-booker.herokuapp.com")
+                .basePath("/booking")
+                .pathParam("id",2)
+                .when()
+                .get("/{id}")
+                .prettyPrint();
+    }
 }
