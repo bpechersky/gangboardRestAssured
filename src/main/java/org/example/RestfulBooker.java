@@ -29,7 +29,7 @@ public class RestfulBooker {
                 "    \"username\" : \"admin\",\n" +
                 "    \"password\" : \"password123\"\n" +
                 "}";
-        Response response = RestAssured.given().body(body).contentType(ContentType.JSON).post(finalUrl);
+        Response response = RestAssured.given().contentType(ContentType.JSON).body(body).post(finalUrl);
         response.prettyPrint();
         return response;
     }
