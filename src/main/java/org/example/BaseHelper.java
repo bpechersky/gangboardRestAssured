@@ -15,4 +15,8 @@ public class BaseHelper {
         response.prettyPrint();
         return response;
     }
+
+    public void post (Object requestPojo){
+
+    }
 }
