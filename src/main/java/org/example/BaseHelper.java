@@ -1,6 +1,7 @@
 package org.example;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class BaseHelper {
@@ -16,7 +17,8 @@ public class BaseHelper {
         return response;
     }
 
-    public void post (Object requestPojo){
-
+    public Response post (Object requestPojo,String url){
+        Response response = RestAssured.given().body(requestPojo).contentType(ContentType.JSON).post(url);
+        return response;
     }
 }
