@@ -5,9 +5,13 @@ import io.restassured.response.Response;
 import org.example.PetStoreSwagger;
 import org.example.RestfulBooker;
 import org.example.pojos.herokuapp.GetTokenResponse;
+import org.example.pojos.herokuapp.PetResponse;
 import org.example.pojos.herokuapp.PostPetSwagger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestHerokuapp {
 
@@ -27,8 +31,10 @@ public class TestHerokuapp {
 
     @Test
     public void testCreateNewPet() throws JsonProcessingException {
-        PostPetSwagger newPetResponse = petStore.postNewPet("Lena", "available");
-        System.out.println("name is : " + newPetResponse.getName());
+        List photos = new ArrayList();
+        photos.add("url1");
+        PetResponse newPet = petStore.createNewPet("Leena", "available", "Dog", "DogC", photos);
+        System.out.println("name is : " + newPet.getName());
     }
 
 }
