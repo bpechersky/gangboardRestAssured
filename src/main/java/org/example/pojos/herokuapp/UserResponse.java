@@ -2,7 +2,7 @@ package org.example.pojos.herokuapp;
 
 import lombok.Data;
 
-public @Data class Response{
+public @Data class UserResponse {
 	private String firstName;
 	private String lastName;
 	private String password;

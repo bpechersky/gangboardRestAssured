@@ -20,6 +20,16 @@ public class PetStoreSwagger {
     String pathParam;
     String finalUrl;
 
+    public UserResponse getUserName (String userName) throws JsonProcessingException {
+        String pathParam = "v2/user/";
+        String finalUrl = baseUrl +pathParam+userName;
+        System.out.println("final url is : "+finalUrl);
+        Response response = baseHelper.get(finalUrl);
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserResponse returnedUserName = objectMapper.readValue(response.prettyPrint(), UserResponse.class);
+        return returnedUserName;
+    }
+
     public AvailablePetsResponse getAvailablePets(String status) throws JsonProcessingException {
         String pathParam = "v2/pet/findByStatus?status=";
         String finalUrl = baseUrl +pathParam+status;
