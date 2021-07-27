@@ -26,7 +26,7 @@ public class BaseHelper {
      * @param headers
      * @return
      */
-    public Response post (String url, Object body, Headers headers){
+    public Response post (String url, String body, Headers headers){
         Response response = RestAssured.given().body(body).headers(headers).post(url);
         return response;
     }

@@ -42,9 +42,12 @@ public class TestHerokuapp {
     @Test
        public void testGetAvailablePets() throws JsonProcessingException{
         String requestUrl = "https://petstore.swagger.io/v2/pet/findByStatus?status=available";
-        AvailablePetsResponse availablePets = petStore.getAvailablePets("available");
-        System.out.println("available pets are : " + availablePets.getName() + " "
-             +   availablePets.getCategory() + " " + availablePets.getTags());
+        AvailablePetsResponse[] petStoreAvailablePets = petStore.getAvailablePets("available");
+        for (int i = 0; i < petStoreAvailablePets.length; i++) {
+            System.out.println(petStoreAvailablePets[i].getName());
+        }
+//        System.out.println("available pets are : " + availablePets.getName() + " "
+//             +   availablePets.getCategory() + " " + availablePets.getTags());
 
     }
 
