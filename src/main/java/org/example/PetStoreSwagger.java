@@ -20,12 +20,14 @@ public class PetStoreSwagger {
     String pathParam;
     String finalUrl;
 
-    public Response getAvailablePets(String status){
+    public AvailablePetsResponse getAvailablePets(String status) throws JsonProcessingException {
         String pathParam = "v2/pet/findByStatus?status=";
         String finalUrl = baseUrl +pathParam+status;
         System.out.println("final url is : "+finalUrl);
         Response response = baseHelper.get(finalUrl);
-        return response;
+        ObjectMapper objectMapper = new ObjectMapper();
+        AvailablePetsResponse availablePetsResponse = objectMapper.readValue(response.prettyPrint(), AvailablePetsResponse.class);// converting the response to a pojo class
+        return availablePetsResponse;
     }
 
     public PetResponse createNewPet(String petName, String status, String tagName, String categoryName, List<String> photoUrls) throws JsonProcessingException {

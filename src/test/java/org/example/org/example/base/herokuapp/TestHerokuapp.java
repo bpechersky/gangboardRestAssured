@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.response.Response;
 import org.example.PetStoreSwagger;
 import org.example.RestfulBooker;
+import org.example.pojos.herokuapp.AvailablePetsResponse;
 import org.example.pojos.herokuapp.GetTokenResponse;
 import org.example.pojos.herokuapp.PetResponse;
-import org.example.pojos.herokuapp.PostPetSwagger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,6 +17,7 @@ public class TestHerokuapp {
 
     RestfulBooker booker = new RestfulBooker();
     PetStoreSwagger petStore = new PetStoreSwagger();
+
     @Test
     public void testAuth() {
         Response token = booker.createToken();
@@ -35,6 +36,16 @@ public class TestHerokuapp {
         photos.add("url1");
         PetResponse newPet = petStore.createNewPet("Leena", "available", "Dog", "DogC", photos);
         System.out.println("name is : " + newPet.getName());
+
+    }
+
+    @Test
+       public void testGetAvailablePets() throws JsonProcessingException{
+        String requestUrl = "https://petstore.swagger.io/v2/pet/findByStatus?status=available";
+        AvailablePetsResponse availablePets = petStore.getAvailablePets("available");
+        System.out.println("available pets are : " + availablePets.getName() + " "
+             +   availablePets.getCategory() + " " + availablePets.getTags());
+
     }
 
 }

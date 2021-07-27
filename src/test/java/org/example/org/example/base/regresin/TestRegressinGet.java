@@ -32,12 +32,6 @@ public class TestRegressinGet {
         Assert.assertEquals(statusCode,200, "unexpected behaviour");
     }
 
-    @Test
-    public void testAvailablePets() {
-        Response uSerDetails = petStoreSwagger.getAvailablePets("available");
-        int statusCode = uSerDetails.getStatusCode();
-        Assert.assertEquals(statusCode,200, "unexpected behaviour");
-    }
 
     @Test
     public void testingBookingGetBookingByName() {
