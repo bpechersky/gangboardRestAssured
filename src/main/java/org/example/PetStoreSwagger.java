@@ -40,6 +40,8 @@ public class PetStoreSwagger {
         return availablePetsResponse;
     }
 
+
+
     public PetResponse createNewPet(String petName, String status, String tagName, String categoryName, List<String> photoUrls) throws JsonProcessingException {
         pathParam = "v2/pet";
         finalUrl = baseUrl+pathParam;
@@ -87,7 +89,25 @@ public class PetStoreSwagger {
         PetResponse petResponse = objectMapper.readValue(response.prettyPrint(), PetResponse.class);// converting the response to a pojo class
         return petResponse;
     }
-
+    public CreateUserWithArrayResponseBody createUserWithArray(String userName, String firstName, String lastName, String password) throws JsonProcessingException {
+        pathParam = "/v2/user/createWithArray";
+        finalUrl = baseUrl+pathParam;
+        System.out.println(finalUrl);
+        CreateUserWithArrayRequestBody requestBody = new CreateUserWithArrayRequestBody();
+        requestBody.setFirstName(userName);
+        requestBody.setFirstName(firstName);
+        requestBody.setLastName(lastName);
+        requestBody.setPassword(password);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestJson = objectMapper.writeValueAsString(requestBody);
+        List<Header> headers = new ArrayList<>(); // creating list of header
+        headers.add(new Header("accept", ContentType.JSON.name() )); //adding header to the list
+        headers.add(new Header("Content-Type", ContentType.JSON.name() ));
+        Headers headersFinal = new Headers(headers);//creating headers
+        Response response = baseHelper.post(finalUrl, requestJson, headersFinal);//calling the base helper
+        CreateUserWithArrayResponseBody createUserWithArrayResponseBody = objectMapper.readValue(response.prettyPrint(), CreateUserWithArrayResponseBody.class);// converting the response to a pojo class
+        return createUserWithArrayResponseBody;
+    }
     public PetResponse createNewPetNew(String petName, String status, String tagName, String categoryName, List<String> photoUrls) throws JsonProcessingException {
         pathParam = "v2/pet";
         finalUrl = baseUrl+pathParam;

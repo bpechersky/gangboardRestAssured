@@ -4,9 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.response.Response;
 import org.example.PetStoreSwagger;
 import org.example.RestfulBooker;
-import org.example.pojos.herokuapp.AvailablePetsResponse;
+import org.example.pojos.herokuapp.CreateUserWithArrayResponseBody;
 import org.example.pojos.herokuapp.GetTokenResponse;
 import org.example.pojos.herokuapp.PetResponse;
+import org.example.pojos.herokuapp.UserResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -38,8 +39,19 @@ public class TestHerokuapp {
         System.out.println("name is : " + newPet.getName());
 
     }
-
     @Test
+    public void testGetUserByUserName() throws JsonProcessingException {
+        UserResponse userResponse = petStore.getUserName("bp1967");
+        System.out.println("username is: " + userResponse);
+    }
+    @Test
+    public void testCreateUserWithArray() throws JsonProcessingException{
+        CreateUserWithArrayResponseBody newUserWithArray = petStore.createUserWithArray("jsmith123","John", "Khlebnikov","password");
+
+
+    }
+
+/*    @Test
        public void testGetAvailablePets() throws JsonProcessingException{
         String requestUrl = "https://petstore.swagger.io/v2/pet/findByStatus?status=available";
         AvailablePetsResponse[] petStoreAvailablePets = petStore.getAvailablePets("available");
@@ -49,6 +61,6 @@ public class TestHerokuapp {
 //        System.out.println("available pets are : " + availablePets.getName() + " "
 //             +   availablePets.getCategory() + " " + availablePets.getTags());
 
-    }
+    }*/
 
 }

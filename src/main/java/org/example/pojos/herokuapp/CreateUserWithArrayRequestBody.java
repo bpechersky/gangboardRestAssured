@@ -19,10 +19,10 @@ import java.util.Map;
     "userStatus"
 })
 @Generated("jsonschema2pojo")
-public class UserResponse {
+public class CreateUserWithArrayRequestBody {
 
     @JsonProperty("id")
-    private Long id;
+    private Integer id;
     @JsonProperty("username")
     private String username;
     @JsonProperty("firstName")
@@ -41,12 +41,12 @@ public class UserResponse {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("id")
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
