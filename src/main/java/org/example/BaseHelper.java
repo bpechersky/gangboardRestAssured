@@ -7,6 +7,7 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class BaseHelper {
 
@@ -38,6 +39,13 @@ public class BaseHelper {
         System.out.println("body is:");
         System.out.println(body);
         Response response = RestAssured.given().body(body).headers(headers).post(url);
+        return response;
+    }
+
+    public Response post (String url, Map<String, String> body, Headers headers){
+        System.out.println("body is:");
+        System.out.println(body);
+        Response response = RestAssured.given().urlEncodingEnabled(true).formParams(body).headers(headers).post(url); //urlEncoding Enabled and passing the form param as map
         return response;
     }
 

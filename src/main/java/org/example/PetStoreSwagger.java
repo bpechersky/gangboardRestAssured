@@ -11,7 +11,9 @@ import io.restassured.response.Response;
 import org.example.pojos.herokuapp.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PetStoreSwagger {
     public static String baseUrl = "https://petstore.swagger.io/";
@@ -89,6 +91,7 @@ public class PetStoreSwagger {
         PetResponse petResponse = objectMapper.readValue(response.prettyPrint(), PetResponse.class);// converting the response to a pojo class
         return petResponse;
     }
+
     public CreateUserWithArrayResponseBody createUserWithArray(String userName, String firstName, String lastName, String password) throws JsonProcessingException {
         pathParam = "v2/user/createWithArray";
         finalUrl = baseUrl+pathParam;
@@ -164,4 +167,24 @@ public class PetStoreSwagger {
         PetResponse petResponse = objectMapper.readValue(response.prettyPrint(), PetResponse.class);// converting the response to a pojo class
         return petResponse;
     }
+
+    public void updatePet(long petId, String petName, String petStatus) {
+        pathParam = "v2/pet/"+petId;
+        finalUrl = baseUrl+pathParam;
+        System.out.println(finalUrl);
+
+        List<Header> headers = new ArrayList<>(); // creating list of header
+        headers.add(new Header("accept", "application/json" )); //adding header to the list
+        headers.add(new Header("Content-Type", "application/x-www-form-urlencoded" ));
+        Headers headersFinal = new Headers(headers);//creating headers
+
+        Map<String, String> body = new HashMap<>();
+        body.put("name", petName);
+        body.put("status", petStatus);
+
+        Response response = baseHelper.post(finalUrl, body, headersFinal);
+        response.prettyPrint();
+
+    }
+
 }

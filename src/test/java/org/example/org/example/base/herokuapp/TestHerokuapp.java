@@ -48,10 +48,14 @@ public class TestHerokuapp {
     public void testCreateUserWithArray() throws JsonProcessingException{
         CreateUserWithArrayResponseBody newUserWithArray = petStore.createUserWithArray("jsmith123","John", "Khlebnikov","password");
 
-
     }
 
-/*    @Test
+    @Test
+    public void testUpdatePet() {
+        petStore.updatePet(123,"ban","cool");
+    }
+
+    /*    @Test
        public void testGetAvailablePets() throws JsonProcessingException{
         String requestUrl = "https://petstore.swagger.io/v2/pet/findByStatus?status=available";
         AvailablePetsResponse[] petStoreAvailablePets = petStore.getAvailablePets("available");
