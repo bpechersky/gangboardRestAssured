@@ -6,6 +6,8 @@ import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
 
+import java.nio.charset.StandardCharsets;
+
 public class BaseHelper {
 
     /**
@@ -27,7 +29,17 @@ public class BaseHelper {
      * @return
      */
     public Response post (String url, String body, Headers headers){
+        System.out.println("body is:");
+        System.out.println(body);
+        Response response = RestAssured.given().body(body.getBytes(StandardCharsets.UTF_8)).headers(headers).post(url);
+        return response;
+    }
+    public Response post (String url, Object body, Headers headers){
+        System.out.println("body is:");
+        System.out.println(body);
         Response response = RestAssured.given().body(body).headers(headers).post(url);
         return response;
     }
+
+
 }

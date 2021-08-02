@@ -90,7 +90,7 @@ public class PetStoreSwagger {
         return petResponse;
     }
     public CreateUserWithArrayResponseBody createUserWithArray(String userName, String firstName, String lastName, String password) throws JsonProcessingException {
-        pathParam = "/v2/user/createWithArray";
+        pathParam = "v2/user/createWithArray";
         finalUrl = baseUrl+pathParam;
         System.out.println(finalUrl);
         CreateUserWithArrayRequestBody requestBody = new CreateUserWithArrayRequestBody();
@@ -98,13 +98,16 @@ public class PetStoreSwagger {
         requestBody.setFirstName(firstName);
         requestBody.setLastName(lastName);
         requestBody.setPassword(password);
+
+        List<CreateUserWithArrayRequestBody> createUserWithArrayRequestBodyList = new ArrayList<>();
+        createUserWithArrayRequestBodyList.add(requestBody);
+
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestJson = objectMapper.writeValueAsString(requestBody);
         List<Header> headers = new ArrayList<>(); // creating list of header
-        headers.add(new Header("accept", ContentType.JSON.name() )); //adding header to the list
-        headers.add(new Header("Content-Type", ContentType.JSON.name() ));
+        headers.add(new Header("accept", "application/json" )); //adding header to the list
+        headers.add(new Header("Content-Type", "application/json" ));
         Headers headersFinal = new Headers(headers);//creating headers
-        Response response = baseHelper.post(finalUrl, requestJson, headersFinal);//calling the base helper
+        Response response = baseHelper.post(finalUrl, createUserWithArrayRequestBodyList, headersFinal);//calling the base helper
         CreateUserWithArrayResponseBody createUserWithArrayResponseBody = objectMapper.readValue(response.prettyPrint(), CreateUserWithArrayResponseBody.class);// converting the response to a pojo class
         return createUserWithArrayResponseBody;
     }
