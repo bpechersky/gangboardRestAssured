@@ -182,7 +182,7 @@ public class PetStoreSwagger {
         body.put("name", petName);
         body.put("status", petStatus);
 
-        Response response = baseHelper.post(finalUrl, body, headersFinal);
+        Response response = baseHelper.postWithFormData(finalUrl, body, headersFinal);
         response.prettyPrint();
 
     }

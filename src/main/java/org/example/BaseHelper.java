@@ -42,7 +42,7 @@ public class BaseHelper {
         return response;
     }
 
-    public Response post (String url, Map<String, String> body, Headers headers){
+    public Response postWithFormData (String url, Map<String, String> body, Headers headers){
         System.out.println("body is:");
         System.out.println(body);
         Response response = RestAssured.given().urlEncodingEnabled(true).formParams(body).headers(headers).post(url); //urlEncoding Enabled and passing the form param as map
