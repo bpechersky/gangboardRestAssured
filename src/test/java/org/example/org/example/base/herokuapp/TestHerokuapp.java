@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.response.Response;
 import org.example.PetStoreSwagger;
 import org.example.RestfulBooker;
+import org.example.org.example.base.dataProvider.PetData;
 import org.example.pojos.herokuapp.CreateUserWithArrayResponseBody;
 import org.example.pojos.herokuapp.GetTokenResponse;
 import org.example.pojos.herokuapp.PetResponse;
@@ -20,26 +21,25 @@ public class TestHerokuapp {
     PetStoreSwagger petStore = new PetStoreSwagger();
 
     @Test
-    public void testAuth() {
+    public void testAuth() { //add dataProvider here
         Response token = booker.createToken();
         Assert.assertEquals(token.getStatusCode(), 200);
     }
-    @Test
+    @Test //add dataProvider here
     public void testAuth1() throws JsonProcessingException {
         GetTokenResponse tokenResponse = booker.createToken("admin", "password123");
         System.out.println("token is : "+tokenResponse.getToken());
 
     }
 
-    @Test
-    public void testCreateNewPet() throws JsonProcessingException {
-        List photos = new ArrayList();
-        photos.add("url1");
-        PetResponse newPet = petStore.createNewPet("Leena", "available", "Dog", "DogC", photos);
-        System.out.println("name is : " + newPet.getName());
+    @Test(dataProvider = "pet_data", dataProviderClass = PetData.class)
+    public void testCreateNewPet(String x, String y, String z, String categoryName, List photos ) throws JsonProcessingException {
+
+        PetResponse newPet = petStore.createNewPet(x, y, z, categoryName, photos);
+        System.out.println("x is : " + newPet.getName());
 
     }
-    @Test
+    @Test//add dataProvider here
     public void testGetUserByUserName() throws JsonProcessingException {
         UserResponse userResponse = petStore.getUserName("bp1967");
         System.out.println("username is: " + userResponse);

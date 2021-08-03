@@ -9,7 +9,7 @@ public class TestHttpBin {
 
     HttpBin httpBin = new HttpBin();
 
-    @Test
+    @Test//add dataProvider here
     public void testGetIPAddress() throws JsonProcessingException {
         Response ipAddress = httpBin.getStatus("ip");
         System.out.println("ip address is: " + ipAddress);
