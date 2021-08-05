@@ -1,7 +1,9 @@
 package org.example.org.example.base.herokuapp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.example.BaseHelper;
 import org.example.PetStoreSwagger;
 import org.example.RestfulBooker;
 import org.example.org.example.base.dataProvider.PetData;
@@ -44,14 +46,14 @@ public class TestHerokuapp {
         UserResponse userResponse = petStore.getUserName("bp1967");
         System.out.println("username is: " + userResponse);
     }
-    @Test
+    @Test//add dataProvider here
     public void testCreateUserWithArray() throws JsonProcessingException{
         CreateUserWithArrayResponseBody newUserWithArray = petStore.createUserWithArray("jsmith123","John", "Khlebnikov","password");
 
     }
 
     @Test
-    public void testUpdatePet() {
+    public void testUpdatePet() { //add dataProvider here
         petStore.updatePet(123,"ban","cool");
     }
 
@@ -67,4 +69,10 @@ public class TestHerokuapp {
 
     }*/
 
+    @Test
+    public void get(){
+        BaseHelper baseHelper = new BaseHelper();
+        baseHelper.get("https://petstore.swagger.io/v2/store/inventory");
+
+    }
 }

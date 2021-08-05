@@ -111,7 +111,7 @@ public class PetStoreSwagger {
         headers.add(new Header("Content-Type", "application/json" ));
         Headers headersFinal = new Headers(headers);//creating headers
         Response response = baseHelper.post(finalUrl, createUserWithArrayRequestBodyList, headersFinal);//calling the base helper
-        CreateUserWithArrayResponseBody createUserWithArrayResponseBody = objectMapper.readValue(response.prettyPrint(), CreateUserWithArrayResponseBody.class);// converting the response to a pojo class
+        CreateUserWithArrayResponseBody createUserWithArrayResponseBody = objectMapper.readValue(response.print(), CreateUserWithArrayResponseBody.class);// converting the response to a pojo class
         return createUserWithArrayResponseBody;
     }
     public PetResponse createNewPetNew(String petName, String status, String tagName, String categoryName, List<String> photoUrls) throws JsonProcessingException {
