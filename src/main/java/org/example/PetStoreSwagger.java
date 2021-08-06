@@ -92,6 +92,7 @@ public class PetStoreSwagger {
         return petResponse;
     }
 
+
     public CreateUserWithArrayResponseBody createUserWithArray(String userName, String firstName, String lastName, String password) throws JsonProcessingException {
         pathParam = "v2/user/createWithArray";
         finalUrl = baseUrl+pathParam;

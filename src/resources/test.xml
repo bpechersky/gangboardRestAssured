@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestHerokuapp" verbose="1">
+    <parameter name="type" value="Regression" />
+
+    <test name="TestHerokuapp"  preserve-order="false" parallel="true" thread-count="5">
+        <classes>
+            <class name="org.example.org.example.base.herokuapp.TestHerokuapp" />
+
+        </classes>
+    </test>
+</suite>
